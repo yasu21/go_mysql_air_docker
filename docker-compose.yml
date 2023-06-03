@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  db:
+    build: ./mysql
+    container_name: mysql
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    env_file:
+      - .env
+    environment:
+      TZ: Asia/Tokyo
+
+  app:
+    build:
+      context: ./go
+      target: local
+    container_name: go
+    volumes:
+      - ./go:/app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    env_file:
+      - .env
+    tty: true
+
+volumes:
+  db_data:

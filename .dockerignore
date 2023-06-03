@@ -1,0 +1,10 @@
+# Ignore git files
+.git
+.gitignore
+
+# Ignore other unnecessary files
+.DS_Store
+
+readme.md
+.vscode
+keys
